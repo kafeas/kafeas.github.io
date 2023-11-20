@@ -2,23 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive PDF Viewer</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
 
-    <title>Kafe AS Menu</title>
+        #pdf-container {
+            width: 100%;
+            height: 100vh;
+        }
+
+        #pdf-viewer {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-     <iframe src="kafe-as-menu.pdf" style="width:100%; height:100vh;" frameborder="0"></iframe>
 
-    <!-- <center> 
-        <h1 style="color: green">GeeksforGeeks</h1> 
-        <h3>Embedding the PDF file Using Object Tag</h3> 
-        <object data= "menuAS.pdf" width="800" height="500"> 
-        </object> 
-    </center>  -->
+<div id="pdf-container">
+    <iframe id="pdf-viewer" src="kafe-as-menu.pdf" frameborder="0"></iframe>
+</div>
 
-    <!-- <center>
-        <img src="menu.png" alt="menu">
-    </center> -->
 </body>
 </html>
