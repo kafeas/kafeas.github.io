@@ -50,6 +50,17 @@
             height: 100vh;
             border: none;
         }
+
+        #pdf-container {
+            display: flex;
+            flex-direction: row;
+            height: 100vh;
+        }
+
+        canvas {
+            flex: 1;
+            border: 1px solid #ddd;
+        }
     </style>
 </head>
 <body>
@@ -62,7 +73,28 @@
 </object>
 
 <!-- For Android and other devices -->
-<iframe src="menu.pdf" width="100%" height="100%" frameborder="0"></iframe>
+<div id="pdf-container"></div>
+
+<script>
+    const pdfContainer = document.getElementById("pdf-container");
+    const pdfPath = "menu.pdf"; // Replace with the actual path to your PDF file
+
+    // Use PDF.js to display the PDF
+    pdfjsLib.getDocument(pdfPath).promise.then(pdfDoc => {
+        for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
+            pdfDoc.getPage(pageNum).then(page => {
+                const canvas = document.createElement("canvas");
+                pdfContainer.appendChild(canvas);
+                const context = canvas.getContext("2d");
+                const viewport = page.getViewport({ scale: 1.5 });
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                page.render({ canvasContext: context, viewport: viewport });
+            });
+        }
+    });
+</script>
 
 </body>
 </html>
