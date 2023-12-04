@@ -38,17 +38,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PDF Viewer</title>
+    <!-- Include PDF.js library -->
+    <script src="path-to-pdfjs/build/pdf.js"></script>
     <style>
+        /* Adjust styling as needed */
         body {
             margin: 0;
-            padding: 0;
             overflow: hidden;
-        }
-
-        iframe, object {
-            width: 100%;
-            height: 100vh;
-            border: none;
         }
 
         #pdf-container {
@@ -64,37 +60,28 @@
     </style>
 </head>
 <body>
+    <div id="pdf-container"></div>
 
-<!-- For iPhone -->
-<object data="menu.pdf" type="application/pdf" width="100%" height="100%">
-    <p>It appears you don't have a PDF plugin for this browser.
-        No biggie... you can <a href="your-pdf-file.pdf">click here to
-        download the PDF file.</a></p>
-</object>
+    <script>
+        const pdfContainer = document.getElementById("pdf-container");
+        const pdfPath = "menu.pdf"; // Replace with the actual path to your PDF file
 
-<!-- For Android and other devices -->
-<div id="pdf-container"></div>
+        // Use PDF.js to display the PDF
+        pdfjsLib.getDocument(pdfPath).promise.then(pdfDoc => {
+            for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
+                pdfDoc.getPage(pageNum).then(page => {
+                    const canvas = document.createElement("canvas");
+                    pdfContainer.appendChild(canvas);
+                    const context = canvas.getContext("2d");
+                    const viewport = page.getViewport({ scale: 1.5 });
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
 
-<script>
-    const pdfContainer = document.getElementById("pdf-container");
-    const pdfPath = "menu.pdf"; // Replace with the actual path to your PDF file
-
-    // Use PDF.js to display the PDF
-    pdfjsLib.getDocument(pdfPath).promise.then(pdfDoc => {
-        for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
-            pdfDoc.getPage(pageNum).then(page => {
-                const canvas = document.createElement("canvas");
-                pdfContainer.appendChild(canvas);
-                const context = canvas.getContext("2d");
-                const viewport = page.getViewport({ scale: 1.5 });
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-
-                page.render({ canvasContext: context, viewport: viewport });
-            });
-        }
-    });
-</script>
-
+                    page.render({ canvasContext: context, viewport: viewport });
+                });
+            }
+        });
+    </script>
 </body>
 </html>
+
