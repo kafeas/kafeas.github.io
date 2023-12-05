@@ -52,30 +52,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="chrome-extension://mooikfkahbdckldjjndioackbalphokd/assets/prompt.js"></script>
-    <title>PDF Viewer</title>
+    <title>Kafe AS Meni</title>
 </head>
 
 <script>
-    // Function to detect if the user is using an Android device
     function isAndroid() {
         return navigator.userAgent.indexOf('Android') > -1;
     }
 
-    // Function to detect if the user is using an iPhone or iPad
     function isIOS() {
         return navigator.userAgent.indexOf('iPhone') > -1 || navigator.userAgent.indexOf('iPad') > -1;
     }
 
-    // Function to load the appropriate PDF viewer based on the device
     function loadPDFViewer() {
         if (isAndroid()) {
-            // Android code
             document.write(`
                 <body style="height: 100%; width: 100%; overflow: hidden; margin:0px; background-color: rgb(82, 86, 89);">
-                <embed style="position:absolute; left: 0; top: 0;" width="100%" height="100%" src="menu.pdf" type="application/pdf">
+                <embed style="position:absolute; left: 0; top: 0;" width="100%" height="100%" src="Kafe AS Meni.pdf" type="application/pdf">
             `);
         } else if (isIOS()) {
-            // iOS code
             document.write(`
                 <style>
                     body {
@@ -92,23 +87,20 @@
                     }
                 </style>
 
-                <object class="pdf-object" data="menuAS.pdf#page=1" type="application/pdf">
-                    <p>Page 1: Your browser does not support PDFs. You can <a href="menuAS.pdf#page=1">download the PDF</a>.</p>
+                <object class="pdf-object" data="Kafe AS Meni prva strana.pdf#page=1" type="application/pdf">
+                    <p>Page 1: Your browser does not support PDFs. You can <a href="Kafe AS Meni prva strana.pdf#page=1">Download the PDF</a>.</p>
                 </object>
 
-                <object class="pdf-object" data="menuAS-2.pdf#page=2" type="application/pdf">
-                    <p>Page 2: Your browser does not support PDFs. You can <a href="menuAS-2.pdf#page=2">download the PDF</a>.</p>
+                <object class="pdf-object" data="Kafe AS Meni druga strana.pdf#page=2" type="application/pdf">
+                    <p>Page 2: Your browser does not support PDFs. You can <a href="Kafe AS Meni druga strana.pdf#page=2">Download the PDF</a>.</p>
                 </object>
             `);
         } else {
-            // Default code if neither Android nor iOS is detected
             document.write('Unsupported device.');
         }
     }
 
-    // Call the function to load the appropriate PDF viewer
     loadPDFViewer();
 </script>
-
 </body>
 </html>
