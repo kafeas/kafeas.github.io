@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -34,76 +34,4 @@
         <img src="Kafe AS Meni druga strana.png" alt="Kafe AS Meni">
     </div>
 </body>
-</html> -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kafe AS Meni</title>
-    <style>
-        body {
-            background: linear-gradient(90deg, #0cc0df, #ffde59);
-            margin: 0;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-
-        .image-container {
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-            height: 100vh;
-            position: relative;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: none; /* Initially hide the images */
-        }
-
-        .loading-logo {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            animation: spin 1s linear infinite;
-        }
-
-        .loading-logo img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 50%;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
-</head>
-<body>
-    <div class="image-container">
-        <div class="loading-logo">
-            <img src="Kafe AS Logo.png" alt="Loading Logo">
-        </div>
-        <img src="Kafe AS Meni prva strana.png" alt="Kafe AS Meni" onload="imageLoaded(this)">
-        <img src="Kafe AS Meni druga strana.png" alt="Kafe AS Meni" onload="imageLoaded(this)">
-    </div>
-
-    <script>
-        function imageLoaded(img) {
-            img.style.display = 'block'; // Show the image once it's loaded
-            document.querySelector('.loading-logo').style.display = 'none'; // Hide the loading logo
-        }
-    </script>
-</body>
 </html>
-
