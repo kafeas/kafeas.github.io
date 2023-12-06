@@ -64,21 +64,23 @@
         img {
             max-width: 100%;
             height: auto;
-            display: none; 
+            display: none; /* Initially hide the images */
         }
 
-        .loading-spinner {
+        .loading-logo {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            /* Add your preferred loading animation or spinner styles here */
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top: 4px solid #ffffff;
-            width: 40px;
-            height: 40px;
+            width: 80px;
+            height: 80px;
             animation: spin 1s linear infinite;
+        }
+
+        .loading-logo img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 50%;
         }
 
         @keyframes spin {
@@ -89,16 +91,19 @@
 </head>
 <body>
     <div class="image-container">
-        <div class="loading-spinner"></div>
+        <div class="loading-logo">
+            <img src="Kafe AS Logo.png" alt="Loading Logo">
+        </div>
         <img src="Kafe AS Meni prva strana.png" alt="Kafe AS Meni" onload="imageLoaded(this)">
         <img src="Kafe AS Meni druga strana.png" alt="Kafe AS Meni" onload="imageLoaded(this)">
     </div>
 
     <script>
         function imageLoaded(img) {
-            img.style.display = 'block'; 
-            document.querySelector('.loading-spinner').style.display = 'none'; 
+            img.style.display = 'block'; // Show the image once it's loaded
+            document.querySelector('.loading-logo').style.display = 'none'; // Hide the loading logo
         }
     </script>
 </body>
 </html>
+
